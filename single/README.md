@@ -4,7 +4,9 @@ clean-webpack-plugin
     编译的时候删除文件
 
 css-hot-loader
-    暂时不明
+    ```
+        import css from 'file.css';
+    ```
 
 css-loader
     允许使用这种方法导入文件

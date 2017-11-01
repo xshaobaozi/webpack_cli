@@ -1,6 +1,5 @@
 const
     extractTextWebpackPlugin = require('extract-text-webpack-plugin'),
-    autoprefixer = require('autoprefixer'),
     Path = require('./basePath');
 
 const config = {
@@ -21,25 +20,14 @@ const config = {
                             {
                                 loader: 'css-loader',
                                 options: {
-                                    minimize: true,
+                                    // minimize: true,
                                     importLoaders: 1
                                 }
                             },
                             {
                                 loader: "postcss-loader",
                                 options: {
-                                    plugins: [
-                                        autoprefixer({
-                                            browsers: [
-                                                'Android >= 4',
-                                                'Chrome >= 30',
-                                                'iOS >= 6',
-                                                'ie>=6',
-                                                'Firefox >= 20',
-                                                'Safari >= 5'
-                                            ]
-                                        })
-                                    ]
+                                    ...(require('./postcss.config.js'))
                                 }
                             },
                             'sass-loader'
