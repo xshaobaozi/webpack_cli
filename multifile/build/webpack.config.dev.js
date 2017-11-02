@@ -16,7 +16,7 @@ const PLUGINS = {
         }),
         new HtmlWebpackPlugin({
             filename: 'index.html',
-            template: 'index.html',
+            template: './src/index/index.html',
             minify: {
                 removeComments:false,
                 collapseWhitespace:false 

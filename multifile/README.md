@@ -1,4 +1,4 @@
-# Webpack 单页面
+# Webpack 多入口
 
     ```
         npm run dev 开发

@@ -1,20 +1,37 @@
-const
-    extractTextWebpackPlugin = require('extract-text-webpack-plugin'),
-    Path = require('./basePath');
+const extractTextWebpackPlugin = require('extract-text-webpack-plugin');
+const Path = require('./basePath');
 
+let entryList = require('./getEnter');
+
+let entry = {};
+const imageLoader = [];
+
+entryList.forEach(item => {
+    entry[item] = [`${Path.input}/${item}/js/${item}.js`];
+    imageLoader.push({
+        // test: new RegExp(/\/index[\/|\D|\d]*\.(jpe?g|png|gif|svg)$/),
+        test: eval(`/\\/${item}[\\/|\\D|\\d]*\\.(jpe?g|png|gif|svg)$/`),
+        use: {
+            loader: 'url-loader',
+            options: {
+                limit: 8192,
+                // name: `./${item}/images/[hash:8].[name].[ext]`
+                name: `./images/${item}/[hash:8].[name].[ext]`
+            }
+        }
+    })
+});
 const config = {
-    entry: {
-        main: [Path.input + '/js/index.js']
-    },
+    entry: entry,
     output: {
         path: Path.output,
-        filename: '[name].js',
+        filename: '[name]_[hash:10].js',
     },
     module: {
         rules: [
             {
                 test: /\.(scss|css)$/,
-                use: ['css-hot-loader'].concat(extractTextWebpackPlugin.extract({
+                use: extractTextWebpackPlugin.extract({
                         fallback: 'style-loader',
                         use: [
                             {
@@ -33,21 +50,11 @@ const config = {
                             'sass-loader'
                         ],
                     })
-                )
+                
             },
             {
                 test: /\.html$/,
                 loader: 'html-loader'
-            },
-            {
-                test: /\.(png|jpg|gif)$/,
-                use: {
-                    loader: 'url-loader',
-                    options: {
-                        limit: 8192,
-                        name: './images/[hash:8].[name].[ext]'
-                    }
-                }
             },
             {
                 test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
@@ -55,7 +62,7 @@ const config = {
                     loader: 'url-loader',
                     options: {
                         limit: 8192,
-                        name: './fonts/[hash:8].[name].[ext]'
+                        name: './[name]/fonts/[hash:8].[name].[ext]'
                     }
                 }
             },
@@ -64,6 +71,7 @@ const config = {
                 exclude: /node_modules/, 
                 loader: "babel-loader" 
             },
+            ...imageLoader
         ]
     }
 }

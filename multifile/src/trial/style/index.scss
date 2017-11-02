@@ -1,0 +1,9 @@
+@charset "utf-8";
+@import './base.scss';
+$_white: #fff;
+#app{
+    /*background-color: red;*/
+    width: 100vw;
+    height: 100vh;
+    background-image: url('./../images/2.jpg');
+}

@@ -13,7 +13,11 @@ const devClient = path.resolve(__dirname, 'base_config/dev-client')
 const config = require('./base_config/base_local_config');
 const proxy = require('./base_config/proxy');
 
-webpackConfig.entry.main = [devClient].concat(webpackConfig.entry.main);
+// webpackConfig.entry.main = [devClient].concat(webpackConfig.entry.main);
+
+Object.keys(webpackConfig.entry).forEach(item => {
+    webpackConfig.entry[item] = [devClient].concat(webpackConfig.entry[item]);
+})
 
 const compiler = Webpack(webpackConfig);
 
