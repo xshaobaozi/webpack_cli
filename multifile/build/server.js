@@ -2,7 +2,8 @@ const Webpack = require("webpack");
 const Express = require('express');
 const app = Express();
 const path = require('path');
-
+const chalk = require('chalk');
+const shell = require('shelljs');
 const webpackConfig = require("./webpack.config.dev");
 
 const webpackDevMiddleware = require('webpack-dev-middleware');
@@ -51,10 +52,19 @@ app.listen(config.port,function(err) {
     if(err){
         console.log(err)
     }else{
-        console.log(
-            '    Exia，驱逐目标！ \n' +
-            '    请打开下面的链接 追逐梦想吧!!!\n' +    
-            `    http://localhost:${config.port}`
-        )
+        let sin = `
+                Exia，驱逐目标！ \n
+                请打开下面的链接 追逐梦想吧!!!\n
+                http://localhost:${config.port}`
+                
+        shell.exec('clear',function(){
+            log(sin, 'magenta');
+        });
+        
     }
 });
+
+
+function log(txt,type){
+    console.log(chalk[type](txt))
+}

@@ -1,6 +1,9 @@
+const autoprefixer = require('autoprefixer');
+const cssnano = require('cssnano');
+
 module.exports = {
     plugins: [
-        require('autoprefixer')({
+        autoprefixer({
             browsers: [
                 'Android >= 4',
                 'Chrome >= 30',
@@ -10,8 +13,8 @@ module.exports = {
                 'Safari >= 5'
             ]
         }),
-        require('cssnano')({
-            preset: 'defailt'
-        })
+        // cssnano({
+        //     preset: 'defailt'
+        // })
     ]
 }

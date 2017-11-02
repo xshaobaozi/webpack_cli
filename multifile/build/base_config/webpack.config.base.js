@@ -1,6 +1,6 @@
 const extractTextWebpackPlugin = require('extract-text-webpack-plugin');
 const Path = require('./basePath');
-
+const autoprefixer = require('autoprefixer');
 let entryList = require('./getEnter');
 
 let entry = {};
@@ -9,7 +9,6 @@ const imageLoader = [];
 entryList.forEach(item => {
     entry[item] = [`${Path.input}/${item}/js/${item}.js`];
     imageLoader.push({
-        // test: new RegExp(/\/index[\/|\D|\d]*\.(jpe?g|png|gif|svg)$/),
         test: eval(`/\\/${item}[\\/|\\D|\\d]*\\.(jpe?g|png|gif|svg)$/`),
         use: {
             loader: 'url-loader',
@@ -37,15 +36,13 @@ const config = {
                             {
                                 loader: 'css-loader',
                                 options: {
-                                    // minimize: true,
+                                    minimize: true,
                                     importLoaders: 1
                                 }
                             },
                             {
                                 loader: "postcss-loader",
-                                options: {
-                                    ...(require('./postcss.config.js'))
-                                }
+                                options: (require('./postcss.config.js'))
                             },
                             'sass-loader'
                         ],
