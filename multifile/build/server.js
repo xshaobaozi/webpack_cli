@@ -2,7 +2,7 @@ const Webpack = require("webpack");
 const Express = require('express');
 const app = Express();
 const path = require('path');
-const chalk = require('chalk');
+const log = require('./base_config/chalk-log.js');
 const shell = require('shelljs');
 const webpackConfig = require("./webpack.config.dev");
 
@@ -63,8 +63,3 @@ app.listen(config.port,function(err) {
         
     }
 });
-
-
-function log(txt,type){
-    console.log(chalk[type](txt))
-}
