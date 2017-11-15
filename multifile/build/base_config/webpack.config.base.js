@@ -25,7 +25,7 @@ const config = {
     output: {
         path: Path.output,
         filename: '[name]_[hash:10].js',
-        publice: 'www.qiniu.com'
+        // publice: 'www.qiniu.com'
     },
     module: {
         rules: [

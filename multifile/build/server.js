@@ -20,7 +20,8 @@ Object.keys(webpackConfig.entry).forEach(item => {
     webpackConfig.entry[item] = [devClient].concat(webpackConfig.entry[item]);
 })
 
-console.log(webpackConfig)
+console.log(Webpack);
+
 const compiler = Webpack(webpackConfig);
 
 

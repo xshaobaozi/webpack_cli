@@ -1,6 +1,8 @@
 import css from './../style/index.scss';
 
-// import axios from 'axios';
-const double_a = i => i * i;
-
-console.log(double_a(2));
+var a = 1;
+function person() {
+    var a = 2;
+    console.log(a)
+}
+person();
