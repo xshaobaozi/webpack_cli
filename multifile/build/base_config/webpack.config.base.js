@@ -69,7 +69,17 @@ const config = {
                 exclude: /node_modules/, 
                 loader: "babel-loader" 
             },
-            ...imageLoader
+            // ...imageLoader,
+            {
+                test: /\.(jpeg|png|jpg)(\?.*)?$/,
+                use: {
+                    loader: 'url-loader',
+                    options: {
+                        limit: 8192,
+                        name: './[name]/fonts/[hash:8].[name].[ext]'
+                    }
+                }
+            },
         ]
     }
 }
