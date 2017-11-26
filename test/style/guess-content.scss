@@ -1,0 +1,538 @@
+/* guess-content */
+.guess-content{
+    padding-top: 30px;
+    position: relative;
+    .cons{
+        display: inline-block;
+        @include Custom_wh(24px, 42px);
+        vertical-align: top;
+        @include ab_l_t(26px, 115px);
+    }
+    .icon-content-prev{
+        @include sprite-icon(cons-prev);
+    }
+    .icon-content-next{
+        @include sprite-icon(cons-next);
+        left: auto;
+        right: 26px;
+    }
+    .guess-cons-main{
+        display: block;
+        @include Custom_wh(940px, 200px);
+        margin: $mrao;
+        overflow: hidden;
+        li{
+            @include float;
+            @include Custom_wh(300px, 200px);
+            background: url(#{$url}bg1.png);
+            margin-right: 20px;
+            &.noData{
+                width: 100%;
+                padding: 0;
+                text-align: center;
+                line-height: 200px;
+                font-size: nth($fsz, 3);
+                margin-right: 0px;
+            }
+            .cons-top{
+                height: 46px;
+                line-height: 46px;
+                background: #161316;
+                font-weight: normal;
+                border-bottom: solid 1px #e2e2e2;
+                text-align: center;
+                position: relative;
+                .cons-time{
+                    width: 90px;
+                    color: nth($color, 3);
+                    font-size: nth($fsz, 3);
+                    @include ab_l_t(15px, 0);
+                    text-align: left;
+                    &:after{
+                        content: '';
+                        @include float;
+                        @include Custom_wh(22px, 22px);
+                        @include sprite-icon(icon-time);
+                        margin: 12px 10px 0 0;
+                    }
+                }
+                em{
+                    font-size: nth($fsz, 3);
+                    margin: $mrao;
+                    &.process{
+                        color: nth($color, 2);
+                    }
+                }
+                .cons-btn{
+                    @include Custom_wh(70px, 24px);
+                    line-height: 24px;
+                    @include ab_r_t(15px, 11px);
+                    @extend %getBtnPath;
+                }
+            }
+            .cons-title{
+                height: 51px;
+                color: nth($color, 3);
+                padding: 11px 0 0 5px;
+                p{
+                    @include Custom_wh(290px, 40px);
+                    display: table-cell;
+                    vertical-align: middle;
+                    text-align: center;
+                }
+            }
+            .line{
+                @include Custom_wh(280px, 15px);
+                background: #dd203c;
+                border-radius: 15px;
+                margin: $mrao;
+                overflow: hidden;
+                position: relative;
+                span{
+                    display: block;
+                    @include Custom_wh(0px, 15px);
+                    background: #4581e2;
+                }
+                .total{
+                    display: block;
+                    line-height: 15px;
+                    color: nth($color, 3);
+                    font-size: 12px;
+                    @include ab_l_t(7px, 0px);
+                    &.tor{
+                        left: auto;
+                        right: 7px;
+                    }
+                }
+            }
+            .guess-rate{
+                @include Custom_wh(286px, 28px);
+                line-height: 28px;
+                margin: $mrao;
+                padding-top: 24px;
+                .rate-module{
+                    @include Custom_wh(98px, 28px);
+                    background: #161316;
+                    border-radius: 15px;
+                    padding-left: 10px;
+                    font-size: 12px;
+                    position: relative;
+                    .pkBtn{
+                        display: block;
+                        @include Custom_wh(36px, 36px);
+                        line-height: 36px;
+                        text-align: center;
+                        color: nth($color, 3);
+                        background: #999999;
+                        border-radius: 50%;
+                        font-size: nth($fsz, 1);
+                        @include ab_r_t(-6px, -4px);
+                    }
+                    &.rate-right{
+                        padding-left: 0;
+                        padding-right: 10px;
+                        text-align: right;
+                        .pkBtn{
+                            @include ab_l_t(-6px, -4px);
+                        }
+                        i{
+                            left: auto;
+                            right: 3px;
+                        }
+                    }
+                    i{
+                        display: block;
+                        @include Custom_wh(66px, 41px);
+                        @include sprite-icon(icon-win);
+                        @include ab_l_t(3px, -7px);
+                    }
+                }
+                &.processing{
+                    .rate-module{
+                        .pkBtn{
+                            &.can{
+                                background: #4581e2;
+                                cursor: pointer;
+                            }
+                            &.cant{
+                                background: #dd203c;
+                                cursor: pointer;
+                            }
+                        }
+                    }
+                }
+                .rate-text{
+                    display: block;
+                    width: 60px;
+                    margin: $mrao;
+                    color: nth($color, 2);
+                    text-align: center;
+                    vertical-align: top;
+                }
+            }
+        }
+    }
+}
+
+.guess-p{
+    padding: 10px 0 0 60px;
+}
+.close{
+    display: block;
+    @include Custom_wh(20px, 15px);
+    text-align: center;
+    line-height: 14px;
+    font-size: 25px;
+    cursor: pointer;
+    @include ab_r_t(4px, 4px);
+    overflow: hidden;
+}
+.geted{
+    border: solid 1px #999999!important;
+    background: #161316!important;
+    color: nth($color, 1)!important;
+}
+
+/* guess-tips  */
+.guess-tips, .popularity-tips, .whole-tips{
+    @include Custom_wh(258px, 163px);
+    background: url(#{$url}bg2.png);
+    border: solid 1px #999999;
+    border-radius: 5px;
+    @include ab_l_t(50%, 50%);
+    margin: -(163+11)+px 0 0 (-258/2)+px;
+    z-index: 55;
+    &.signTips{
+        margin-top: (-163/2)+px;
+    }
+    .tips-main{
+        @include Custom_wh(100%, 120px);
+    }
+    .tips-btn1{
+        display: block;
+        @include Custom_wh(90px, 33px);
+        line-height: 33px;
+        text-align: center;
+        margin: $mrao;
+        @extend %getBtnPath;
+        font-weight: bold;
+        &:hover{
+            background: #faeabb;
+        }
+    }
+    .get-p{
+        height: 33px;
+        line-height: 33px;
+        text-align: center;
+        color: nth($color, 3);
+        box-sizing: content-box;
+        img{
+            display: inline-block;
+            height: 33px;
+            vertical-align: top;
+            margin: 0 10px;
+        }
+        &.get-top{
+            padding-top: 26px;
+        }
+        &.get-over{
+            padding-top: 40px;
+        }
+    }
+    .tips-title{
+        @include Custom_wh(231px, 37px);
+        line-height: 37px;
+        border-bottom: solid 1px #999999;
+        margin: $mrao;
+        font-weight: normal;
+        padding-left: 9px;
+        color: nth($color, 3);
+        em{
+            color: nth($color, 2);
+        }
+    }
+    .doct1{
+        display: block;
+        @include Custom_wh(16px, 11px);
+        @include sprite-icon(icon1);
+        @include ab_l_b(50%, -11px);
+        margin-left: (-16/2)+px;
+    }
+    .tips-input{
+        width: 229px;
+        margin: $mrao;
+        padding-top: 9px;
+        line-height: 38px;
+        .ck-num{
+            @include Custom_wh(146px, 36px);
+            line-height: 36px;
+            border: solid 1px #999;
+            text-indent: 0.5em;
+            color: nth($color, 1);
+            background: none;
+        }
+        .tips-btn2{
+            color: nth($color, 2);
+            margin-left: 7px;
+        }
+    }
+    .win-text{
+        padding: 5px 0 0 19px;
+        color: nth($color, 3);
+    }
+    &.receive,&.lotTips,&.getLotTips{
+        z-index: 1002;
+        margin-top: 0px;
+        .get-top{
+            padding-top: 15px;
+        }
+        .get-p{
+            height: 30px;
+            line-height: 30px;
+        }
+        .lot-title{
+            text-align: center;
+            padding: 25px 0 5px;
+            color: nth($color, 3);
+        }
+        .lot-p{
+            padding: 0 10px;
+            color: nth($color, 3);
+        }
+    }
+    &.getLotTips,&.lotTips{
+        .lot-title{
+            padding: 30px 0 15px;
+        }
+        .lot-p{
+            text-align: center;
+        }
+    }
+}
+
+/* guess-ward */
+.guess-ward{
+    @include Custom_wh(368px, 612px);
+    background: url(#{$url}bg_rank.png) no-repeat;
+    @include ab_l_t(50%, 193px);
+    margin-left: (-368/2)+px;
+    z-index: 1001;
+    h2{
+        height: 43px;
+        line-height: 43px;
+        font-size: nth($fsz, 2);
+        text-align: center;
+    }
+    .ward-main{
+        width: 320px;
+        margin: $mrao;
+        padding-top: 11px;
+    }
+    .ward-h4{
+        height: 33px;
+        line-height: 33px;
+        padding-bottom: 15px;
+        a{
+            @include float;
+            @include Custom_wh(156px, 33px);
+            text-align: center;
+            background: #201b1f;
+            &.current,&:hover{
+                background: nth($color, 2);
+                color: #242424;
+            }
+            &.ward-btn1{
+                margin-right: 8px;
+            }
+        }
+    }
+    .my-message{
+        height: 80px;
+        padding: 4px 10px 0;
+        p{
+            color: nth($color, 3);
+            padding-left: 10px;
+            line-height: 26px;
+            em{
+                color: nth($color, 2);
+            }
+            &.noLogin{
+                text-align: center;
+                line-height: 80px;
+                a{
+                    color: #4678cf;
+                    text-decoration: underline;
+                    margin-right: 5px;
+                }
+            }
+        }
+    }
+    .ward-list{
+        padding-top: 10px;
+        span{
+            @include float;
+            height: 32px;
+            line-height: 32px;
+            text-align: center;
+            position: relative;
+            .exp{
+                display: block;
+                @include Custom_wh(14px, 14px);
+                @include sprite-icon(icon3);
+                cursor: pointer;
+                @include ab_r_t(-4px, 50%);
+                margin-top: -6px;
+                z-index: 55;
+            }
+        }
+        $w: 62px 127px 120px;
+        @for $i from 1 through 3{
+            .t#{$i}{
+                width: nth($w, $i);
+            }
+        }
+        dt{
+            height: 32px;
+            font-size: nth($fsz, 2);
+            padding-bottom: 5px;
+            position: relative;
+            .exp-tips{
+                width: 280px;
+                background: #272427;
+                @include ab_l_t(10px, 28px);
+                font-size: nth($fsz, 1);
+                padding: 10px;
+                z-index: 55;
+                color: nth($color, 3);
+            }
+        }
+        dd{
+            height: 332px;
+            .scroll-pane{
+                height: 332px;
+            }
+        }
+        p{
+            height: 32px;
+            color: nth($color, 3);
+            padding-top: 1px;
+            @for $i from 1 through 3{
+                &.wl#{$i}{
+                    .t1{
+                        text-indent: -999em;
+                        overflow: hidden;
+                        &:before{
+                            content: '';
+                            display: block;
+                            @include Custom_wh(13px, 16px);
+                            @include sprite-icon(n#{$i});
+                            margin: 8px auto 0;
+                        }
+                    }
+                }
+            }
+            .t2{
+                white-space:nowrap;
+                overflow:hidden;
+                text-overflow:ellipsis;
+            }
+            &.noDate{
+                text-align: center;
+                padding-top: 140px;
+            }
+            &.hi{
+                color: nth($color, 2);
+            }
+        }
+    }
+    .win-message{
+        @include Custom_wh(320px, 466px);
+        background: url(#{$url}win-message.jpg) no-repeat;
+    }
+}
+/* guess-record */
+.guess-record{
+    @include Custom_wh(718px, 426px);
+    background: url(#{$url}bg_record.png) no-repeat;
+    @include ab_l_t(50%, 193px);
+    margin-left: (-718/2)+px;
+    z-index: 1001;
+    h2{
+        height: 43px;
+        line-height: 43px;
+        text-align: center;
+        font-size: nth($fsz, 2);
+    }
+    .record-main{
+        width: 670px;
+        margin: $mrao;
+        padding-top: 11px;
+        .record-top{
+            height: 44px;
+            line-height: 44px;
+            span{
+                @include float;
+                width: 190px;
+                text-align: center;
+                color: nth($color, 3);
+                &.tp2{
+                    width: 290px;
+                }
+                em{
+                    color: nth($color, 2);
+                }
+            }
+        }
+        .record-title{
+            height: 37px;
+            line-height: 37px;
+            font-size: nth($fsz, 2);
+            padding-left: 19px;
+        }
+    }
+    .record-list{
+        height: 211px;
+        $rew: 135px 154px 75px 102px 75px 112px;
+        span{
+            @include float;
+            height: 27px;
+            line-height: 27px;
+            font-size: nth($fsz, 2);
+            text-align: center;
+            @for $i from 1 through 6{
+                &.rlist#{$i}{
+                    width: nth($rew, $i);
+                }
+            }
+        }
+        dt{
+            height: 27px;
+            padding-bottom: 4px;
+        }
+        dd{
+            height: 181px;
+            overflow: auto;
+            &::-webkit-scrollbar-thumb{
+                background-color: nth($color, 2);
+                border-radius: 6px;
+            } 
+            &::-webkit-scrollbar{
+                background-color: transparent;
+                width: 6px;
+            }
+        }
+        p{
+            height: 27px;
+            padding: 4px 0;
+            span{
+                color: nth($color, 3);
+                font-size: nth($fsz, 1);
+            }
+            &.noData{
+                padding-top: 80px;
+                text-align: center;
+                color: nth($color, 3);
+            }
+        }
+    }
+}

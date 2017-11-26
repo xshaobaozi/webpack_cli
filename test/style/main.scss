@@ -1,0 +1,182 @@
+/* maskMain */
+.maskMain{
+    @include Custom_wh;
+    background: #000;
+    opacity: 0.5;
+    filter:alpha(opacity=50);
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    z-index: 1000;
+}
+/* endMessage */
+.endMessage1,.endMessage2{
+    z-index: 1003;
+    top: 203px;
+    margin-top: 0;
+    .tips-main{
+        color: nth($color, 3);
+        h4{
+            text-align: center;
+            padding: 20px 0 5px;
+        }
+        .em-p{
+            text-align: center;
+            padding: 0 10px;
+            .em-span{
+                display: inline-block;
+                vertical-align: top;
+                max-width: 137px;
+            }
+        }
+    }
+    .em-btn{
+        text-align: center;
+        .tips-btn1{
+            display: inline-block;
+            margin: 0 10px;
+        }
+    }
+}
+
+
+/* Lottery_main */
+.lottery-containt{
+    height: 641px;
+    background: url(#{$url}bg_module2.png) no-repeat;
+    position: relative;
+}
+.Lottery_main{
+    @include Custom_wh(512px, 443px);
+    background: url(#{$url}bg3.png);
+    @include float;
+    margin: 122px 0 0 48px;
+    position: relative;
+    li{
+        @include Custom_wh(150px, 127px);
+        background: url(#{$url}bg_lottery.jpg) no-repeat;
+        text-align: center;
+        img{
+            display: inline-block;
+            height: 90px;
+            vertical-align: top;
+        }
+        span{
+            display: block;
+            @include Custom_wh(100%, 36px);
+            line-height: 36px;
+            padding-top: 1px;
+        }
+        &.hover{
+            border: solid 2px #ffe7a1;
+            margin: -2px;
+        }
+    }
+    $site: (11px 11px) (181px 11px) (351px 11px) (351px 158px) (351px 305px) (181px 305px) (11px 305px) (11px 158px);
+    @for $i from 1 through 8{
+        .icon#{$i}{
+            @include ab_l_t(nth(nth($site, $i), 1), nth(nth($site, $i), 2));
+        }
+    }
+    .Lottery_btn{
+        @include Custom_wh(150px, 96px);
+        @include ab_l_t(50%, 50%);
+        margin: (-96/2)+px 0 0 (-150/2)+px;
+        .btn1{
+            display: block;
+            @include Custom_wh;
+            @include sprite-icon(begin-btn);
+            color: #161316;
+            font-size: 20px;
+            text-align: center;
+            line-height: 60px;
+            font-weight: bold;
+            em{
+                width: 100%;
+                font-size: nth($fsz, 2);
+                font-weight: normal;
+                @include ab_l_t(0px, 54px);
+                line-height: normal;
+            }
+            &.noneData{
+                @include sprite-icon(begin-btn-none);
+                cursor: default;
+            }
+        }
+    }
+}
+.rule{
+    @include Custom_wh(391px, 385px);
+    background: url(#{$url}bg3.png);
+    margin: 122px 38px 0 0;
+    padding: 29px;
+    position: relative;
+    h4{
+        font-size: nth($fsz, 3);
+        color: nth($color, 2);
+        padding-bottom: 10px;
+    }
+    p{
+        font-size: nth($fsz, 2);
+        color: nth($color, 2);
+        line-height: 45px;
+    }
+    .ward-record,.share-btn{
+        display: inline-block;
+        @include Custom_wh(120px, 33px);
+        text-align: center;
+        line-height: 33px;
+        font-weight: bold;
+        @extend %getBtnPath;
+    }
+    .share-btn{
+        width: 130px;
+        margin-left: 10px;
+    }
+    .rule-btn{
+        padding-top: 55px;
+    }
+    .winners{
+        @include Custom_wh(415px, 25px);
+        @include ab_l_b(20px, 25px);
+        overflow: hidden;
+        li{
+            line-height: 25px;
+            color: nth($color, 3);
+            span{
+                display: inline-block;
+                color: nth($color, 2);
+                vertical-align: top;
+                &.broad-span1{
+                    max-width: 70px;
+                }
+                &.broad-span2{
+                    max-width: 136px;
+                }
+            }
+            em{
+                float: right;
+                color: nth($color, 1);
+            }
+        }
+    }
+}
+.share-tips{
+    @include Custom_wh(250px, 210px);
+    margin-top: 0px;
+    .ewm{
+        @include Custom_wh(93px, 93px);
+        margin: $mrao;
+        padding-top: 40px;
+        img{
+            @include Custom_wh;
+        }
+    }
+    p{
+        text-align: center;
+        color: nth($color, 3);
+        padding-top: 20px;
+    }
+}

@@ -1,0 +1,32 @@
+// @import './global.scss';
+// @import './jscrollpane.scss';
+// @import './mixin.scss';
+@import './base.scss';
+// @import './guess-content.scss';
+// @import './main.scss';
+// @import './module-right.scss';
+
+.scroll__list{
+    background-color: red;
+}
+
+.scroll__box, .scroll__box1{
+    height: 40px;
+    @extend .scroll-default__box;
+    .scroll__list-box{
+        & > li{
+            width: 40px;
+            height: 30px;
+            background-color: green;
+            margin-right: 10px;
+            float: left;
+        }
+    }
+}
+
+.next, .prev{
+    position: relative;
+    &.prevStop, &.nextStop{
+        color: red;
+    }
+}
