@@ -44,7 +44,11 @@ const PLUGINS = {
         }),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.optimize.ModuleConcatenationPlugin(),
-        new webpack.NoErrorsPlugin()
+        new webpack.NoErrorsPlugin(),
+        new webpack.ProvidePlugin({
+          $: "jquery",
+          jQuery: "jquery"
+        }),
     ]
 }
 

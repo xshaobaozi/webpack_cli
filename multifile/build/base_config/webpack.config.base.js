@@ -15,7 +15,8 @@ entryList.forEach(item => {
             options: {
                 limit: 8192,
                 // name: `./${item}/images/[hash:8].[name].[ext]`
-                name: `./images/${item}/[hash:8].[name].[ext]`
+                name: `./images/${item}/[name].[ext]`
+                // name: `./images/${item}/[hash:8].[name].[ext]`
             }
         }
     })
@@ -71,16 +72,33 @@ const config = {
             },
             // ...imageLoader,
             {
-                test: /\.(jpeg|png|jpg)(\?.*)?$/,
+                test: /\.(jpeg|png|jpg|gif)(\?.*)?$/,
                 use: {
                     loader: 'url-loader',
                     options: {
                         limit: 8192,
-                        name: './[name]/fonts/[hash:8].[name].[ext]'
+                        // name: './[name]/fonts/[hash:8].[name].[ext]'
+                        name: './images/[name].[ext]'
+                    }
+                }
+            },
+            {
+                test: /\.(mp3|wav)(\?.*)?$/,
+                use: {
+                    loader: 'file-loader',
+                    options: {
+                        limit: 8192,
+                        name: './music/[name].[ext]'
                     }
                 }
             },
         ]
+    },
+    externals: {
+        $: 'jquery',
+        $: 'window.$',
+        weui: 'weui',
+        wx: 'wx'
     }
 }
 

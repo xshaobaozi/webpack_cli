@@ -28,6 +28,7 @@
     "html-loader": "^0.4.5",
     "html-webpack-plugin": "^2.29.0",
     "http-proxy-middleware": "^0.17.4",
+    "jquery": "^3.2.1",
     "morgan": "^1.9.0",
     "node-sass": "^4.5.3",
     "postcss-loader": "^2.0.6",
@@ -42,6 +43,8 @@
     "webpack-merge": "^4.1.0"
   },
   "dependencies": {
-    "axios": "^0.16.2"
+    "axios": "^0.16.2",
+    "echarts": "^3.8.5",
+    "highcharts": "^6.0.3"
   }
 }

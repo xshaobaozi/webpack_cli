@@ -1,11 +1,232 @@
-<html>
+<html lang="zh-CN">
     <head>
-        <meta charset="utf-8">
-        <title>webpack 单页面项目</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>CC直播H5吃鸡直播营销页面</title>
+        <script>
+            (function (doc, win) {
+                var 
+                  docEl = doc.documentElement,
+                  resizeEvt = 'orientationchange' in win? 'orientationchange' : 'resize',
+                  recalc = function () {
+                      var clientWidth = docEl.clientWidth;
+                      if (clientWidth === undefined) return;
+                      docEl.style.fontSize = 100 * (clientWidth / 640) + 'px';
+                  };
+                if (doc.addEventListener === undefined) return;
+                win.addEventListener(resizeEvt, recalc, false);
+                doc.addEventListener('DOMContentLoaded', recalc, false)
+            })(document, window);
+        </script>
+        <link rel="stylesheet" href="https://res.wx.qq.com/open/libs/weui/1.1.0/weui.min.css">
+      <script src="//code.createjs.com/preloadjs-0.6.2.min.js"></script>
     </head>
     <body>
         <div id="app">
-            this is index
+            <!-- 登录页 -->
+            <div class="page1 hide">
+                <div class="page1__title"></div>
+                <div class="page1__body"></div>
+                <div class="page1__btn">
+                    <div class="page1__btn-group">
+                        <div class="text"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- 选择页 -->
+            <div class="page2 hide">
+
+              <div class="page2_1">
+                  <div class="page2__top">
+                      <div class="page2__animation"></div>
+                  </div>
+
+                  <div class="page2__body">
+                    <div class="page2__body-desc page2_middle_1"></div>
+                  </div>
+
+                  <div class="page2__bottom-1">
+                    <div 
+                      data-isleft="1"
+                      class="page2__bottom-left">
+                        <div class="desc page2_lev1_l"></div>
+                    </div>
+                    <div 
+                      data-isleft="2"
+                      class="page2__bottom-right">
+                        <div class="desc page2_lev1_r"></div>
+                    </div>
+                  </div>
+              </div>
+
+              <div class="page2_2 hide">
+                  <div class="page2__top">
+                      <div class="page2__top-city"></div>
+                      <div class="page2__animation"></div>
+                  </div>
+                  <div class="page2__body">
+                    <div class="page2__body-desc page2_middle_2"></div>
+                  </div>
+                  <div class="page2__bottom-1">
+                    <div 
+                      data-isleft="1"
+                      class="page2__bottom-left">
+                        <div class="desc page2_lev2_l"></div>
+                    </div>
+                    <div 
+                      data-isleft="2"
+                      class="page2__bottom-right">
+                        <div class="desc page2_lev2_r"></div>
+                    </div>
+                  </div>
+              </div>
+
+              <div class="page2_3 hide">
+                  <div class="page2__top">
+                      <div class="page2__animation"></div>
+                  </div>
+                  <div class="page2__body">
+                    <div class="page2__body-desc page2_middle_4"></div>
+                  </div>
+                  <div class="page2__bottom-1">
+                    <div 
+                      data-isleft="1"
+                      class="page2__bottom-left">
+                        <div class="desc page2_lev4_l"></div>
+                    </div>
+                    <div 
+                      data-isleft="2"
+                      class="page2__bottom-right">
+                        <div class="desc page2_lev4_r"></div>
+                    </div>
+                  </div>
+              </div>
+
+              <div class="page2_4 hide">
+                  <div class="page2__top">
+                      <div class="page2__animation"></div>
+                  </div>
+                  <div class="page2__top_2 hide">
+                      <div class="page2__animation_2 page_3_ban">
+                        <div class="music_ban_btn"></div>
+                      </div>
+                  </div>
+                  <div class="page2__body">
+                    <div class="page2__body-desc page2_middle_3"></div>
+                  </div>
+                  <div class="page2__bottom-2">
+                    <div 
+                      data-isleft="1"
+                      class="page2__bottom-left">
+                        <div class="desc page2_lev3_l"></div>
+                    </div>
+                    <div 
+                      data-isleft="3"
+                      class="page2__bottom-main">
+                        <div class="desc page2_lev3_2"></div>
+                    </div>
+                    <div 
+                      data-isleft="2"
+                      class="page2__bottom-right">
+                        <div class="desc page2_lev3_3"></div>
+                    </div>
+                  </div>
+              </div>
+
+            </div>
+            <!-- 用户录入界面 -->
+            <div class="page3 hide">
+                <div class="page3__main">
+                  <div class="page3__main-title">
+                      输入游戏角色进行全面评估
+                  </div>
+                  <div class="page3__main-box">
+                      <div class="page3__main-item">
+                          <div class="page3__main-list__title">
+                              <span>系</span><span>统：</span>
+                          </div>
+                        <div class="page3__main-list__desc">
+                            <div class="icon-box">
+                                <div class="icon-apple"></div>
+                            </div>
+                            <div class="icon-box">
+                                <div class="icon-andirod"></div>
+                            </div>
+                            <div class="icon-box">
+                                <div class="icon-win"></div>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="page3__main-item">
+                          <div class="page3__main-list__title">
+                              游戏昵称：
+                          </div>
+                          <div class="page3__main-list__desc">
+                              <input 
+                                  class="info_input"
+                                  type="text">
+                          </div>
+                      </div>
+                  </div>
+                  <div class="page3__main-bottom">
+                      <div class="page3__main-bottom-box">
+                          <div class="desc"></div>
+                      </div>
+                  </div>
+                </div>
+            </div>
+
+            <!-- 结果展示页 -->
+            <div class="page4 hide">
+                <div class="page4__main">
+                    <div class="page4__main-echart">
+                         <div id="page4__main-echart_box"></div>
+                    </div>
+                    <div class="page4__main-echart__name">
+                        <span>烧包</span>，你是荒野行动中
+                    </div>
+                    <div class="page4__main-echart__tip">
+                        <span>人性外挂</span>
+                    </div>
+                    <div class="page4__main-echart__come">
+                        
+                    </div>
+                    <div class="page4__main-echart__money">
+                        月赚
+                        <span class="page4__main-echart__money-list">
+                        50000</span>元
+                    </div>
+                </div>
+                <div class="page4__bottom">
+                    <div class="page4__bottom-left">
+                        <div class="desc"></div>
+                    </div>
+                    <div class="page4__bottom-right">
+                        <div class="desc"></div>
+                    </div>
+                </div>
+                <div class="page_sponsor">
+                    评估数据由<span>《荒野行动助手》</span>友情支持
+                </div>
+            </div>
+            <!-- 音乐按钮 -->
+            <div class="app_music">
+            </div>
+            <!-- loading -->
+            <div class="loading">
+                <div class="loading-box">
+                    <div class="loading-img"></div>
+                    <div class="loading-precent">0%</div>
+                </div>
+            </div>
         </div>
     </body>
+    <script src="//cdn.bootcss.com/jquery/1.11.1/jquery.js"></script>
+    <script src="//cdn.bootcss.com/echarts/3.8.5/echarts.min.js"></script>
+    <script type="text/javascript" src="https://res.wx.qq.com/open/libs/weuijs/1.1.1/weui.min.js"></script>
+    <script charset="utf-8" src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+    <script>
+      window.weui = weui;
+    </script>
 </html>
