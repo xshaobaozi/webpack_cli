@@ -207,7 +207,7 @@ function init() {
 
                 //表示page2_*
                 $(`.page2 .page2_${i + 1}`)
-                    .fadeOut(i < 3?'normal':'slow', function(){
+                    .fadeOut(i < 3?'slow':'slow', function(){
                         if(i < 3){
                             //二选一
                             $(this)

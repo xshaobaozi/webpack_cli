@@ -52,7 +52,7 @@ export default {
             team_num: {
                 DBD: 101,
                 FDM: 200,
-                WSYM: 300 
+                WSYW: 300 
             },
             msg: '',
             time: new Date().getTime(),
@@ -68,7 +68,7 @@ export default {
             data: {
                 DBD: 100,
                 FDM: 200,
-                WSYM: 300 
+                WSYW: 300 
             },
             msg: '',
             time: new Date().getTime(),
@@ -83,7 +83,7 @@ export default {
             code: 'OK',
             data: {
                 user_info: {
-                    bind_time: 'yyyy-mm-dd hh:mm:ss',
+                    bind_time: '2017-12-18 hh:mm:ss',
                     cuteid: 'gzm211',
                     join_time: 'yyy-mm-dd hh:mm:ss',
                     staff_id: 123,

@@ -55,7 +55,7 @@ const dataType = {
         _el: '.page2_2 .page2__animation',
         offset: '-6',
         length: img_list['page1_fly'],
-        t: 1,
+        t: 1.2,
         url: 'page1_fly'
     },
     '202': {
@@ -69,14 +69,14 @@ const dataType = {
         _el: '.page2_3 .page2__animation',
         offset: '-6',
         length: img_list['page2_room'],
-        t: 1,
+        t: 1.2,
         url: 'page2_room'
     },
     '320': {
         _el: '.page2_3 .page2__animation',
         offset: '-6',
         length: img_list['page2_findprerson'],
-        t: 1,
+        t: 1.2,
         url: 'page2_findprerson'
     },
     '301': {

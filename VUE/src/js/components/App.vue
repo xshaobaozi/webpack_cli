@@ -1,9 +1,14 @@
-<style>
-    /*@mixin flex_center($justify: center, $align: center) {
+<style lang="scss">
+    @mixin flex_center($justify: center, $align: center) {
         display: flex;
         justify-content: $justify;
         align-items: $align;
-    }*/
+    }
+    html, body, div , p{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
     #app {
       background-image: url('./../../assets/netyear.png');
       background-size: 100% 100%;
@@ -71,9 +76,7 @@
         height: 40px;
     }
     .banner-info{
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
+        @include flex_center(flex-end, center);
         background-color: rgba(0,0,0,.6);
     }
     .banner-info-img{
@@ -91,21 +94,21 @@
         font-size: 14px;
     }
     .banner_drop{
+        @include flex_center();
+        flex-direction: column;
+        flex-wrap: wrap;
         position: absolute;
         right: 0;
         top: 0;
         transform: translateY(40px);
         width: 200px;
-        background-color: red;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        flex-wrap: wrap;
+        background-color: white;
+        border: 1px solid black;
+        border-radius: 12px;
         padding: 10px 10px 0 10px;
     }
     .banner_drop > div{
-        margin-bottom: 5px;
+        margin-bottom: 10px;
     }
     .banner_drop-info{
         width: 100%;
@@ -113,8 +116,7 @@
         justify-content: center;
     }
     .banner_drop-info__title{
-        width: 50px;
-        background-color: green;
+        width: 40px;
         text-align: right;
         margin-right: 10px;
     }
@@ -134,48 +136,55 @@
         height: 100vh;
         background-color: rgba(0,0,0,.6);
     }
+    .dialog-box{
+        @include flex_center();
+        flex-direction: column;
+        width: 350px;
+        background-color: white;
+        border: 1px solid black;
+        border-radius: 12px;
+        padding: 10px;
+        & > div{
+            margin-bottom: 10px;
+        }
+    }
+    .dialog-box__item{
+        @include flex_center(flex-start);
+        & > .title{
+            width: 40px;
+            text-align: left;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+        & > .in{
+            width: 100%;
+        }
+    }
+    .dialog-box__item-bottom{
+        @include flex_center();
+        .dialog-box__item-bottom__bind{
+            margin-right: 20px;
+        }
+        & > div{
+            border: 1px solid black;
+            padding: 5px 10px;
+            border-radius: 12px;
+        }
+    }
 </style>
 
 <template>
     <div id="app">
-        <div 
-            @click="logincc"
-            class="login"></div>
-        <div class="page1_box">
-            <div class="team_box">
-                <div class="team_box_num">
-                    {{team1.val}}/{{team1.max}}人
-                </div>
-                <div 
-                    class="team_box_btn"
-                    @click="jointeam('DBD')"></div>
-            </div>
-            <div class="team_box center">
-                <div class="team_box_num">
-                    {{team2.val}}/{{team2.max}}人
-                </div>
-                <div 
-                    class="team_box_btn"
-                    @click="jointeam('FDM')"></div>
-            </div>
-            <div class="team_box">
-                <div class="team_box_num">
-                    {{team3.val}}/{{team3.max}}人
-                </div>
-                <div 
-                    class="team_box_btn"
-                    @click="jointeam('WSYW')"></div>
-            </div>
-        </div>
+        <!-- banner -->
         <div class="banner">
             <div 
                 @mouseover="showInfoBox(true)"
                 class="banner-info">
                 <div class="banner-info-img">
-                    <img src="http://imgs.aixifan.com/content/2017_11_09/1512833048.gif" alt="">
+                    <img :src="user_info.purl" alt="">
                 </div>
                 <div class="banner-info-name">
-                    {{ccinfo.name}}
+                    {{user_info.nickname}}
                 </div>
             </div>
             <div 
@@ -199,6 +208,38 @@
                     class="banner_drop-btn">退出</div>
             </div>
         </div>
+        <!-- 登录 -->
+        <div 
+            @click="handleLoginCC"
+            class="login"></div>
+        <!-- 队伍 -->
+        <div class="page1_box">
+            <div class="team_box">
+                <div class="team_box_num">
+                    {{team.FDM}}/500人
+                </div>
+                <div 
+                    class="team_box_btn"
+                    @click="jointeam('FDM')"></div>
+            </div>
+            <div class="team_box center">
+                <div class="team_box_num">
+                    {{team.DBD}}/500人
+                </div>
+                <div 
+                    class="team_box_btn"
+                    @click="jointeam('DBD')"></div>
+            </div>
+            <div class="team_box">
+                <div class="team_box_num">
+                    {{team.WSYW}}/500人
+                </div>
+                <div 
+                    class="team_box_btn"
+                    @click="jointeam('WSYW')"></div>
+            </div>
+        </div>
+        <!-- 绑定弹窗 -->
         <div 
             v-if="bindbox"
             class="dialog">
@@ -207,19 +248,19 @@
                     当前登录账号
                 </div>
                 <div class="dialog-box__desc">
-                    {{user_info.cuteid}}
+                    {{user_info.urs}}
                 </div>
                 <div class="dialog-box__item">
-                    <div>工号</div>
-                    <div>
+                    <div class="title">工号</div>
+                    <div class="in">
                         <input 
                             v-model="account.id"
                             type="text">
                     </div>
                 </div>
                 <div class="dialog-box__item">
-                    <div>工号</div>
-                    <div>
+                    <div class="title">姓名</div>
+                    <div class="in">
                         <input 
                             v-model="account.name"
                             type="text">
@@ -247,6 +288,8 @@
 
 <script>
     import apis from './../common/api';
+    import {uinfo} from './userinfo';
+    console.log(uinfo)
     const joinCode = {
         'OK': '成功',
         'OVER_TIME': '报已结束',
@@ -265,47 +308,30 @@
         '-1': '未开始',
         1: '结束'
     }
+
     export default {
       name: 'app',
       data(){
         return {
-            team1: {
-                val: null,
-                max: 500
+            team: {
+                FDM: 0,
+                WSYW: 0,
+                DBD: 0
             },
-            team2: {
-                val: null,
-                max: 500
-            },
-            team3: {
-                val: null,
-                max: 500
-            },
-            user_info: {
-                bind_time: null,
-                cuteid: null,
-                join_time: null,
-                staff_id: null,
-                staff_name: null,
-                team: null,
-                urs: null,
-            },
+            user_info: uinfo,
             account: {
                 id: null,
                 name: null
             },
-            ccinfo: {
-                name: null,
-                islogin: false
-            },
             infobox: false,
             bindbox: false,
-            isBind: false
+            isBind: false,
+            islogin: false
         }
       },
       filters: {
         formatdesc(val, bind) {
-            if(bind && val){
+            if(bind){
                 return val
             }else{
                 return '未绑定'
@@ -313,37 +339,47 @@
         }
       },
       methods: {
+        // 隐藏绑定窗口
         showBindBox(tag) {
+            if(!this.isBind && tag === false){
+                account.id = '';
+                account.name = '';
+            }
             this.bindbox = tag;
         },
+        //显示 banner下面的信息窗口
         showInfoBox(tag) {
             this.infobox = tag;
         },
+        //退出登录
         loginout() {
             this.user_info = {
-                bind_time: null,
-                cuteid: null,
-                join_time: null,
-                staff_id: null,
-                staff_name: null,
-                team: null,
-                urs: null,
             }
             this.account = {
                 id: null,
                 name: null
             }
-            this.ccinfo = {
-                name: null,
-                islogin: false
+            this.isBind = false;
+            window.localStorage.removeItem('userinfo');
+        },
+        //登录
+        handleLoginCC() {
+            // const userinfo = JSON.parse(window.localStorage.getItem('userinfo'));
+            if(!this.islogin){
+                this.getUserInfo();
+                console.log('登录cc')
             }
-            this.isBind = false
+            // else{
+            //     this.user_info = uinfo;
+            //     this.islogin = true;
+            // }
         },
-        logincc() {
-            console.log('登录cc')
-            this.ccinfo.name = 'cc登录成功';
-            this.ccinfo.islogin = true;
+        // 设置cc信息
+        setUserInfo(info) {
+            this.user_info = userinfo.uinfo;
+            this.islogin = true
         },
+        //获取活动时间
         activeTime() {
             apis.getActtime()
             .then(res => {
@@ -354,6 +390,7 @@
                 }
             })
         },
+        //绑定用户信息
         bindAccount() {
             apis.postBinding({
                 staff_id: this.account.id,
@@ -361,14 +398,16 @@
             })
             .then(res => {
                 if(res.code == 'OK'){
-                    this.showBindBox(false);
                     this.isBind = true;
-                    alert(bindCode[res.code]);
+                    this.showBindBox(false);
+                    // alert(bindCode[res.code]);
                 }else{
-                    alert(bindCode[res.code]);
+                    // alert(bindCode[res.code]);
+                    alert(res.msg);
                 }
             })
         },
+        // 加入队伍
         jointeam(type) {
             apis.postJoin({
                 team_name: type
@@ -376,11 +415,11 @@
             .then(res => {
                 if(res.code == 'OK'){
                     this.refreshTeam(res.team_num)
-                }else{
-                    alert(joinCode[res.code])
                 }
+                alert(joinCode[res.code])
             })
         },
+        //获取队伍人数
         getTeamNum() {
             apis.getTeamnum()
             .then(res => {
@@ -389,17 +428,23 @@
                 }
             })
         },
+        //设置队伍人数信息
         refreshTeam(data) {
             const {DBD, FDM, WSYM} = data;
-            this.team1.val = DBD;
-            this.team2.val = FDM;
-            this.team3.val = WSYM;
+            this.team = data;
         },
+        // 获取用户信息
         getUserInfo() {
             apis.getUserInfo()
             .then(res => {
                 if(res.code == 'OK'){
-                    this.user_info = res.data.user_info
+                    this.account.id = res.data.user_info.staff_id;
+                    this.account.name = res.data.user_info.staff_name;
+                    this.user_info.urs = res.data.user_info.urs;
+                    let time = new Date(this.user_info.bind_time).getTime();
+                    if( time < new Date().getTime()) {
+                        this.isBind = true;
+                    }
                 }
             })
         },
@@ -408,6 +453,7 @@
         }
       },
       mounted() {
+        window.localStorage.removeItem('userinfo');
         this.init();
       }
     }
