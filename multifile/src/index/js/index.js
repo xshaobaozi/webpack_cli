@@ -1,58 +1,43 @@
 import css from './../style/index.scss';
-import png from './../images/page_1/page1_fly_wait.png';
-const canvas = document.querySelector('canvas');
-const ctx = canvas.getContext('2d');
 
-canvas.width = 640;
-canvas.height = 600;
+window.onload = init();
 
-const img = new Image();
-
-img.src = png;
-window.onload = function() {
-    // ctx.clearRect(0, 0, canvas.width, canvas.height);
-    // ctx.drawImage(img, 0, 0, 640, 600, 0, 0, 640, 600);
-    createAnimation(ctx, {
-        w: 640,
-        h: 9600,
-        l: 16,
-        img: img,
-        time: 10000
-    })
-}
-
-function createAnimation (_ctx, {w, h, l, img, time}) {
-    let inner_h = h / l;
-    let count = 0;
-    let debounce = null;
-
-
-    debounce = setInterval(() => {
-        if(count < l){
-            drawCanvas(_ctx, inner_h);
-        }else{
-            count = 0;
+function init () {
+    var canvas = document.querySelector('canvas');
+        var ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        var Heart = function(ctx, x, y, a) {
+            this.ctx = ctx;
+            this.x = x;
+            this.y = y;
+            this.a = a;
+            this.vertices = [];
+            for(let i = 0; i < 50; i++) {
+                var step = i / 50 * (Math.PI * 2);//设置心上面两点之间的角度，具体分成多少份，好像需要去试。
+                var vector = {
+                    x : this.a *(16 * Math.pow(Math.sin(step), 3)),
+                    y : this.a *(13 * Math.cos(step) - 5 * Math.cos(2 * step) - 2 * Math.cos(3 * step) - Math.cos(4 * step))
+                }
+                this.vertices.push(vector);
+            }
         }
-    }, 1000/60)
-
-    setTimeout(() => {
-        console.log(111)
-        clearInterval(debounce)
-    }, time)
-
-    function drawCanvas(_ctx, inner_h) {
-        ctx.clearRect(0, 0, w, inner_h);
-        ctx.drawImage(
-            img,
-            0,
-            count * inner_h,
-            w,
-            inner_h,
-            0,
-            0,
-            w,
-            inner_h
-        )
-        count++;
-    }
-}
+        Heart.prototype.draw = function() {
+            this.ctx.beginPath();
+            this.ctx.translate(this.x,this.y);
+            this.ctx.rotate(Math.PI);
+            for(let i=0; i<50; i++) {
+                var vector = this.vertices[i];
+                this.ctx.lineTo(vector.x, vector.y);
+            }
+            this.ctx.strokeStyle = "#dc143c";
+            this.ctx.stroke();
+        }
+        canvas.onmousedown = function(e) {
+            var x = e.offsetX;
+            var y = e.offsetY;
+            var a = 3;
+            var heart = new Heart(ctx, x, y, a);
+            heart.draw();
+        }
+};
